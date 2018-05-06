@@ -1,10 +1,14 @@
 package com.github.haroldjcastillo.asm.test;
 
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
-import static org.objectweb.asm.Opcodes.ACC_STATIC;
+import com.github.haroldjcastillo.agent.instrumentation.Agent;
+import com.github.haroldjcastillo.asm.core.adding.AddFieldAdapter;
+import com.github.haroldjcastillo.asm.core.removing.Foo;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
 
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
@@ -12,20 +16,12 @@ import java.lang.instrument.Instrumentation;
 import java.lang.reflect.Field;
 import java.security.ProtectionDomain;
 
-import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.runners.MethodSorters;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.objectweb.asm.Opcodes.ACC_PUBLIC;
+import static org.objectweb.asm.Opcodes.ACC_STATIC;
 
-import com.github.haroldjcastillo.agent.instrumentation.Agent;
-import com.github.haroldjcastillo.asm.core.adding.AddFieldAdapter;
-import com.github.haroldjcastillo.asm.core.removing.Foo;
-
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class AddFieldAdapterTest {
 
 	private static Instrumentation inst;
